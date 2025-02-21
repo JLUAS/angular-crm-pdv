@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ProductsService {
 
-  private apiUrl = 'http://localhost:3030/products';
+  private apiUrl = 'https://humorous-oryx-ace.ngrok-free.app/products';
   // private apiUrl = 'https://humorous-oryx-ace.ngrok-free.app'
 
   constructor(private http: HttpClient, private router: Router) { }

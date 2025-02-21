@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class FileService {
   // private apiUrl = 'https://boutique-t9xx.onrender.com';
-  private apiUrl = 'http://localhost:3030/products';
+  private apiUrl = 'https://humorous-oryx-ace.ngrok-free.app/products';
 
   constructor(private http: HttpClient) {}
 
