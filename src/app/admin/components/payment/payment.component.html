@@ -1,0 +1,31 @@
+<div class="my-10 w-[90%] mx-auto overflow-x-auto">
+  <table class="min-w-full border-collapse border border-gray-300">
+    <thead class="bg-gray-200">
+      <tr>
+        <th *ngFor="let header of headers" class="border border-gray-300 px-4 py-2 text-center">
+          {{ header.columnName }}
+        </th>
+        <!-- Columna de acción: Comprar -->
+        <th class="border border-gray-300 px-4 py-2 text-center">Comprar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products" class="even:bg-gray-50">
+        <td *ngFor="let header of headers" class="border border-gray-300 px-4 py-2 text-center">
+          <ng-container *ngIf="header.columnName === 'image'; else showValue">
+            <img [src]="product[header.columnName]" alt="Imagen del producto" class="h-12 w-auto">
+          </ng-container>
+          <ng-template #showValue>
+            {{ product[header.columnName] }}
+          </ng-template>
+        </td>
+        <!-- Celda para la acción de compra -->
+        <td class="border border-gray-300 px-4 py-2 text-center">
+          <button (click)="buyProduct(product)" class="bg-blue-500 text-white px-4 py-2 rounded">
+            Comprar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

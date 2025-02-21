@@ -1,0 +1,51 @@
+<div class="flex flex-row justify-between w-[90%] items-center mx-auto my-10">
+  <h2 class="text-2xl select-none">
+    <strong class="text-orange">Usuarios</strong>
+  </h2>
+  <div
+    class="flex items-center py-2 px-4 bg-orange rounded-md justify-between hover:cursor-pointer hover:duration-[350ms] hover:bg-orangeHover"
+    (click)="modal=!modal">
+    <mat-icon style="color: white !important;">add</mat-icon>
+    <p class="text-xl text-white w-[88.5%] ml-2">Agregar</p>
+  </div>
+</div>
+
+<div *ngIf="modal" class="z-50 fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-md">
+  <div class="w-full max-w-lg bg-white p-6 rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold mb-4">Agregar Producto</h2>
+    <form [formGroup]="productForm" (ngSubmit)="addNewProduct()">
+      <div *ngFor="let header of headers">
+        <div *ngIf="header.columnName !== 'id'" class="mb-4">
+          <label [for]="header.columnName" class="block mb-1 capitalize">
+            {{ header.columnName }}
+          </label>
+
+          <ng-container [ngSwitch]="header.inputType">
+            <input *ngSwitchCase="'file'"
+                   type="file"
+                   [id]="header.columnName"
+                   (change)="onFileSelected($event, header.columnName)"
+                   class="border rounded p-2 w-full">
+            <input *ngSwitchDefault
+                   [type]="header.inputType"
+                   [id]="header.columnName"
+                   [formControlName]="header.columnName"
+                   class="border rounded p-2 w-full">
+          </ng-container>
+        </div>
+      </div>
+      <div class="flex justify-start flex-row-reverse">
+        <button type="submit"
+          class="px-4 py-2 rounded-md border-2 duration-300 bg-orange text-white hover:bg-orangeHover focus:outline-none mx-2"
+          [disabled]="!productForm.valid || isLoading || !allRequiredFilesSelected()">
+          {{ isLoading ? 'Cargando...' : 'Agregar Producto' }}
+        </button>
+
+        <button type="button" (click)="modal=!modal" class="px-4 py-2 rounded-md border-2 duration-300 border-gray-300 text-gray-700 bg-white hover:bg-gray-100 focus:outline-none">Cancelar</button>
+      </div>
+    </form>
+
+    <div *ngIf="successMessage" class="mt-4 text-green-600">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="mt-4 text-red-600">{{ errorMessage }}</div>
+  </div>
+</div>

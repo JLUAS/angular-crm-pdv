@@ -1,0 +1,57 @@
+<div class="flex flex-row justify-between w-[90%] items-center mx-auto my-10">
+  <h2 class="text-2xl select-none">
+    <strong class="text-orange">Usuarios</strong>
+  </h2>
+  <div
+    class="flex items-center py-2 px-4 bg-orange rounded-md justify-between hover:cursor-pointer hover:duration-[350ms] hover:bg-orangeHover"
+    (click)="modal=!modal">
+    <mat-icon style="color: white !important;">add</mat-icon>
+    <p class="text-xl text-white w-[88.5%] ml-2">Agregar</p>
+  </div>
+</div>
+
+<div *ngIf="modal" class="z-50 fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-md">
+  <div class="w-full max-w-lg bg-white p-6 rounded-lg shadow-lg">
+    <div class="flex-col">
+      <div class="grid grid-cols-1 md:grid-cols-2 grid-flow-row gap-4">
+        <div class=" py-3 mx-auto flex flex-col w-full">
+          <label class="font-bold text-xl" for="email">Correo electronico</label>
+          <input class="border-2 border-eblack rounded-md p-2 mt-2 focus:outline-none focus:border-orangeHover" type="email" placeholder="email@bitgenios.com" [(ngModel)]="user.email" name="email" id="email" required>
+        </div>
+        <div class=" py-3 mx-auto flex flex-col w-full">
+          <label class="font-bold text-xl" for="firstName">Nombre</label>
+          <input class="border-2 border-eblack rounded-md p-2 mt-2 focus:outline-none focus:border-orangeHover" type="text" placeholder="Nombre" [(ngModel)]="user.firstName" name="firstName" id="firstName" required>
+        </div>
+        <div class=" py-3 mx-auto flex flex-col w-full">
+          <label class="font-bold text-xl" for="middleName">Apellido paterno</label>
+          <input class="border-2 border-eblack rounded-md p-2 mt-2 focus:outline-none focus:border-orangeHover" type="text" placeholder="Apellido paterno" [(ngModel)]="user.middleName" name="middleName" id="middleName" required>
+        </div>
+        <div class=" py-3 mx-auto flex flex-col w-full">
+          <label class="font-bold text-xl" for="lastName">Apellido materno</label>
+          <input class="border-2 border-eblack rounded-md p-2 mt-2 focus:outline-none focus:border-orangeHover" type="text" placeholder="Apellido materno" [(ngModel)]="user.lastName" name="lastName" id="lastName" required>
+        </div>
+
+        <div class=" py-3 mx-auto flex flex-col w-full">
+          <label class="font-bold text-xl" for="role">Rol</label>
+          <select class="border-2 border-eblack rounded-md p-2 mt-2 focus:outline-none focus:border-orangeHover" [(ngModel)]="user.rol" name="role" id="role" required>
+            <option value="" disabled selected>Selecciona un rol</option>
+            <option value="admin">Administrador</option>
+            <option value="leader">Lider</option>
+            <option value="user">Personal de la salud</option>
+            <option value="root">Root</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex flex-col justify-end">
+        <div class="flex flex-row-reverse justify-start">
+          <button type="button" (click)="register()"
+          class="px-4 py-2 rounded-md border-2 duration-300 bg-orange text-white hover:bg-orangeHover focus:outline-none mx-2">
+           Continuar</button>
+          <button type="button" (click)="modal=!modal" class="px-4 py-2 rounded-md border-2 duration-300 border-gray-300 text-gray-700 bg-white hover:bg-gray-100 focus:outline-none">Cancelar</button>
+        </div>
+        <p class="text-red-700 text-sm ml-auto mt-4" *ngIf="errGeneral">{{errMessage}}</p>
+        <p class="text-red-700 text-sm ml-auto mt-4" *ngIf="success">{{succMessage}}</p>
+      </div>
+    </div>
+  </div>
+</div>

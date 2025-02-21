@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@theme {
+  --color-bone:#F1EDE4;
+  --color-bone2: #F8F6F2;
+  --color-orange: #ff7f50;
+  --color-orangeHover: #ff4500;
+  --color-eblack: #1c1d1cff;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
