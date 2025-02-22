@@ -12,7 +12,7 @@
     <tbody>
       <tr *ngFor="let product of products" class="even:bg-gray-50">
         <td *ngFor="let header of headers" class="border border-gray-300 px-4 py-2 text-center">
-          <ng-container *ngIf="header.columnName === 'image'; else showValue">
+          <ng-container *ngIf="header.columnName === 'imageUrl'; else showValue">
             <img [src]="product[header.columnName]" alt="Imagen del producto" class="h-12 w-auto">
           </ng-container>
           <ng-template #showValue>

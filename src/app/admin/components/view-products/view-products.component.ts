@@ -12,7 +12,7 @@ export interface ProductHeader {
 // Interfaz para el producto, con propiedades fijas y dinámicas.
 export interface Product {
   name: string;
-  image: string;
+  imageUrl: string;
   price: number;
   [key: string]: any;
 }
@@ -58,10 +58,7 @@ export class ViewProductsComponent implements OnInit {
     this.productsService.getProducts().subscribe({
       next: (data: any) => {
         this.products = data.products;
-        // Cargar la imagen para cada producto
-        this.products.forEach(product => {
-          this.loadFile(product.name);
-        });
+        console.log(this.products)
       },
       error: (error) => {
         console.error('Error al cargar los productos', error);
@@ -70,23 +67,9 @@ export class ViewProductsComponent implements OnInit {
     });
   }
 
-  loadFile(name: string) {
-    this.fileService.downloadFile(name).subscribe({
-      next: (imageBlob) => {
-        const url = window.URL.createObjectURL(imageBlob);
-        const productIndex = this.products.findIndex(product => product.name === name);
-        if (productIndex !== -1) {
-          this.products[productIndex].image = url;
-        }
-      },
-      error: (error) => {
-        console.error('Error al cargar el archivo:', error);
-      }
-    });
-  }
   buyProduct(product: Product): void {
     if (product.price) {
-      this.productsService.createCheckoutSession({ price: product.price, name: product.name, image: product.image })
+      this.productsService.createCheckoutSession({ price: product.price, name: product.name, image: product.imageUrl })
         .subscribe({
           next: (response) => {
             // Redirige a la URL que te devolvió el servidor
