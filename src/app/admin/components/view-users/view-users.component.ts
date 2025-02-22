@@ -36,6 +36,7 @@ export class ViewUsersComponent implements OnInit{
     this.usersService.getUsers().subscribe(
       (users: UserTable[]) => {
         this.users = users;
+        console.log(users)
         this.totalPages = Math.ceil(this.users.length / this.pageSize);
         this.paginateData();
         this.isLoading = false;

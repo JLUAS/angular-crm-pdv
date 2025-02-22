@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ProductsService {
 
-  private apiUrl = 'https://humorous-oryx-ace.ngrok-free.app/products';
+  private apiUrl = 'https://node-pdv.onrender.com/products';
   // private apiUrl = 'https://humorous-oryx-ace.ngrok-free.app'
 
   constructor(private http: HttpClient, private router: Router) { }
